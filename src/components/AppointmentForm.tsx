@@ -17,6 +17,7 @@ import {
   Stethoscope,
 } from "lucide-react";
 import { TIME_SLOTS } from "@/lib/symptom-data";
+import { useI18n } from "@/lib/i18n";
 
 export interface AppointmentData {
   specialist: string;
@@ -34,6 +35,7 @@ interface AppointmentFormProps {
 }
 
 const AppointmentForm = ({ data, suggestedSpecialist, onChange, onSubmit, onBack }: AppointmentFormProps) => {
+  const { t } = useI18n();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = () => {
@@ -52,23 +54,21 @@ const AppointmentForm = ({ data, suggestedSpecialist, onChange, onSubmit, onBack
             <CalendarIcon className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-foreground">Book Appointment</h2>
-            <p className="text-sm text-muted-foreground">Choose your preferred schedule</p>
+            <h2 className="text-xl font-bold text-foreground">{t("bookAppointment")}</h2>
+            <p className="text-sm text-muted-foreground">{t("chooseSchedule")}</p>
           </div>
         </div>
 
-        {/* Specialist */}
         <div className="mb-6 p-4 rounded-xl bg-accent/50 border border-primary/10">
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
             <Stethoscope className="w-4 h-4" />
-            Recommended Specialist
+            {t("recommendedSpec")}
           </div>
           <p className="font-semibold text-foreground text-lg">{suggestedSpecialist}</p>
         </div>
 
-        {/* Date Picker */}
         <div className="space-y-3 mb-6">
-          <Label className="text-sm font-medium">Preferred Date</Label>
+          <Label className="text-sm font-medium">{t("preferredDate")}</Label>
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -79,7 +79,7 @@ const AppointmentForm = ({ data, suggestedSpecialist, onChange, onSubmit, onBack
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {data.date ? format(data.date, "PPP") : "Select a date"}
+                {data.date ? format(data.date, "PPP") : t("selectDate")}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
@@ -95,9 +95,8 @@ const AppointmentForm = ({ data, suggestedSpecialist, onChange, onSubmit, onBack
           </Popover>
         </div>
 
-        {/* Time Slots */}
         <div className="space-y-3 mb-6">
-          <Label className="text-sm font-medium">Available Time Slots</Label>
+          <Label className="text-sm font-medium">{t("availableSlots")}</Label>
           <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
             {TIME_SLOTS.map((slot) => (
               <button
@@ -113,9 +112,8 @@ const AppointmentForm = ({ data, suggestedSpecialist, onChange, onSubmit, onBack
           </div>
         </div>
 
-        {/* Mode */}
         <div className="space-y-3">
-          <Label className="text-sm font-medium">Consultation Mode</Label>
+          <Label className="text-sm font-medium">{t("consultationMode")}</Label>
           <div className="grid grid-cols-2 gap-3">
             <button
               onClick={() => onChange({ ...data, mode: "in-person" })}
@@ -127,8 +125,8 @@ const AppointmentForm = ({ data, suggestedSpecialist, onChange, onSubmit, onBack
             >
               <Building2 className={`w-5 h-5 ${data.mode === "in-person" ? "text-primary" : "text-muted-foreground"}`} />
               <div className="text-left">
-                <p className={`font-medium ${data.mode === "in-person" ? "text-primary" : "text-foreground"}`}>In-Person</p>
-                <p className="text-xs text-muted-foreground">Visit the clinic</p>
+                <p className={`font-medium ${data.mode === "in-person" ? "text-primary" : "text-foreground"}`}>{t("inPerson")}</p>
+                <p className="text-xs text-muted-foreground">{t("visitClinic")}</p>
               </div>
             </button>
             <button
@@ -141,8 +139,8 @@ const AppointmentForm = ({ data, suggestedSpecialist, onChange, onSubmit, onBack
             >
               <Video className={`w-5 h-5 ${data.mode === "teleconsultation" ? "text-primary" : "text-muted-foreground"}`} />
               <div className="text-left">
-                <p className={`font-medium ${data.mode === "teleconsultation" ? "text-primary" : "text-foreground"}`}>Teleconsultation</p>
-                <p className="text-xs text-muted-foreground">Video call</p>
+                <p className={`font-medium ${data.mode === "teleconsultation" ? "text-primary" : "text-foreground"}`}>{t("teleconsultation")}</p>
+                <p className="text-xs text-muted-foreground">{t("videoCall")}</p>
               </div>
             </button>
           </div>
@@ -152,14 +150,14 @@ const AppointmentForm = ({ data, suggestedSpecialist, onChange, onSubmit, onBack
       <div className="flex justify-between">
         <Button variant="outline" onClick={onBack} className="h-12 px-6 rounded-xl gap-2">
           <ArrowLeft className="w-4 h-4" />
-          Back
+          {t("back")}
         </Button>
         <Button
           onClick={handleSubmit}
           disabled={!data.date || !data.timeSlot || isSubmitting}
           className="h-12 px-8 rounded-xl text-base font-semibold"
         >
-          {isSubmitting ? "Booking..." : "Confirm Appointment"}
+          {isSubmitting ? t("booking") : t("confirmAppointment")}
         </Button>
       </div>
     </div>
