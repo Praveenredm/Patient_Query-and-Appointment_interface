@@ -20,6 +20,8 @@ import {
   ShieldAlert,
 } from "lucide-react";
 import { SYMPTOMS, DURATIONS, analyzeSymptoms, type SymptomAnalysis } from "@/lib/symptom-data";
+import { useI18n, SYMPTOM_KEY_MAP, DURATION_KEY_MAP } from "@/lib/i18n";
+import VoiceInput from "./VoiceInput";
 
 export interface SymptomsData {
   symptoms: string[];
@@ -37,6 +39,7 @@ interface SymptomsFormProps {
 }
 
 const SymptomsForm = ({ data, onChange, onNext, onBack, onEmergency }: SymptomsFormProps) => {
+  const { t } = useI18n();
   const [analysis, setAnalysis] = useState<SymptomAnalysis | null>(null);
 
   useEffect(() => {
@@ -73,15 +76,13 @@ const SymptomsForm = ({ data, onChange, onNext, onBack, onEmergency }: SymptomsF
         <div className="emergency-banner flex items-start gap-3 animate-in fade-in duration-300">
           <AlertTriangle className="w-6 h-6 mt-0.5 flex-shrink-0" />
           <div>
-            <h3 className="font-bold text-lg">Emergency Alert</h3>
-            <p className="text-sm mt-1">
-              Your symptom combination indicates a potential emergency. Please seek immediate medical attention.
-            </p>
+            <h3 className="font-bold text-lg">{t("emergencyAlert")}</h3>
+            <p className="text-sm mt-1">{t("emergencyText")}</p>
             <div className="flex items-center gap-2 mt-2 text-sm font-medium">
               <MapPin className="w-4 h-4" />
               <span>{analysis.nearestHospital}</span>
             </div>
-            <p className="text-xs mt-2 opacity-75">Normal appointment booking has been disabled. Please call emergency services or visit the nearest hospital.</p>
+            <p className="text-xs mt-2 opacity-75">{t("emergencyDisabled")}</p>
           </div>
         </div>
       )}
@@ -92,8 +93,8 @@ const SymptomsForm = ({ data, onChange, onNext, onBack, onEmergency }: SymptomsF
             <Activity className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-foreground">Symptoms</h2>
-            <p className="text-sm text-muted-foreground">Select all symptoms you're experiencing</p>
+            <h2 className="text-xl font-bold text-foreground">{t("symptomsTitle")}</h2>
+            <p className="text-sm text-muted-foreground">{t("symptomsSubtitle")}</p>
           </div>
         </div>
 
@@ -106,16 +107,16 @@ const SymptomsForm = ({ data, onChange, onNext, onBack, onEmergency }: SymptomsF
                 data.symptoms.includes(symptom) ? "symptom-chip-selected" : "symptom-chip-unselected"
               }`}
             >
-              {symptom}
+              {t(SYMPTOM_KEY_MAP[symptom])}
             </button>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div className="space-y-3">
             <Label className="text-sm font-medium flex items-center gap-2">
               <Gauge className="w-4 h-4 text-muted-foreground" />
-              Severity Level: <span className="text-primary font-bold">{data.severity}/5</span>
+              {t("severityLevel")}: <span className="text-primary font-bold">{data.severity}/5</span>
             </Label>
             <Slider
               value={[data.severity]}
@@ -126,26 +127,32 @@ const SymptomsForm = ({ data, onChange, onNext, onBack, onEmergency }: SymptomsF
               className="py-2"
             />
             <div className="flex justify-between text-xs text-muted-foreground">
-              <span>Mild</span>
-              <span>Moderate</span>
-              <span>Severe</span>
+              <span>{t("mild")}</span>
+              <span>{t("moderate")}</span>
+              <span>{t("severe")}</span>
             </div>
           </div>
 
           <div className="space-y-3">
-            <Label className="text-sm font-medium">Duration</Label>
+            <Label className="text-sm font-medium">{t("duration")}</Label>
             <Select value={data.duration} onValueChange={(v) => onChange({ ...data, duration: v })}>
               <SelectTrigger className="h-12 rounded-xl">
-                <SelectValue placeholder="How long have you had symptoms?" />
+                <SelectValue placeholder={t("durationPlaceholder")} />
               </SelectTrigger>
               <SelectContent>
                 {DURATIONS.map((d) => (
-                  <SelectItem key={d} value={d}>{d}</SelectItem>
+                  <SelectItem key={d} value={d}>{t(DURATION_KEY_MAP[d])}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
         </div>
+
+        {/* Voice Input */}
+        <VoiceInput
+          value={data.description}
+          onChange={(v) => onChange({ ...data, description: v })}
+        />
       </div>
 
       {/* Symptom Intelligence Panel */}
@@ -156,24 +163,24 @@ const SymptomsForm = ({ data, onChange, onNext, onBack, onEmergency }: SymptomsF
               <ShieldAlert className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h3 className="font-bold text-foreground">Symptom Intelligence</h3>
-              <p className="text-xs text-muted-foreground">AI-powered preliminary assessment</p>
+              <h3 className="font-bold text-foreground">{t("symptomIntelligence")}</h3>
+              <p className="text-xs text-muted-foreground">{t("aiAssessment")}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-card rounded-xl p-4 border border-border">
-              <p className="text-xs text-muted-foreground mb-1">Possible Category</p>
+              <p className="text-xs text-muted-foreground mb-1">{t("possibleCategory")}</p>
               <p className="font-semibold text-foreground">{analysis.category}</p>
             </div>
             <div className="bg-card rounded-xl p-4 border border-border">
-              <p className="text-xs text-muted-foreground mb-1">Urgency Level</p>
+              <p className="text-xs text-muted-foreground mb-1">{t("urgencyLevel")}</p>
               <p className={`font-semibold ${urgencyColor(analysis.urgency)}`}>
                 {analysis.urgency}
               </p>
             </div>
             <div className="bg-card rounded-xl p-4 border border-border">
-              <p className="text-xs text-muted-foreground mb-1">Recommended Specialist</p>
+              <p className="text-xs text-muted-foreground mb-1">{t("recommendedSpecialist")}</p>
               <div className="flex items-center gap-1.5">
                 <Stethoscope className="w-4 h-4 text-primary" />
                 <p className="font-semibold text-foreground">{analysis.specialist}</p>
@@ -186,14 +193,14 @@ const SymptomsForm = ({ data, onChange, onNext, onBack, onEmergency }: SymptomsF
       <div className="flex justify-between">
         <Button variant="outline" onClick={onBack} className="h-12 px-6 rounded-xl gap-2">
           <ArrowLeft className="w-4 h-4" />
-          Back
+          {t("back")}
         </Button>
         <Button
           onClick={onNext}
           disabled={data.symptoms.length === 0 || analysis?.isEmergency}
           className="h-12 px-8 rounded-xl text-base font-semibold gap-2"
         >
-          Continue
+          {t("continue")}
           <ArrowRight className="w-4 h-4" />
         </Button>
       </div>

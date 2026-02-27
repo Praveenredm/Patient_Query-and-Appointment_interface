@@ -4,16 +4,19 @@ import PatientDetailsForm, { type PatientData } from "@/components/PatientDetail
 import SymptomsForm, { type SymptomsData } from "@/components/SymptomsForm";
 import AppointmentForm, { type AppointmentData } from "@/components/AppointmentForm";
 import AppointmentSummary from "@/components/AppointmentSummary";
+import LanguageToggle from "@/components/LanguageToggle";
 import { analyzeSymptoms, generateReferenceId } from "@/lib/symptom-data";
+import { useI18n } from "@/lib/i18n";
 import { Heart } from "lucide-react";
-
-const STEPS = ["Patient Details", "Symptoms", "Appointment"];
 
 const initialPatient: PatientData = { fullName: "", age: "", gender: "", location: "", contact: "" };
 const initialSymptoms: SymptomsData = { symptoms: [], severity: 1, duration: "", description: "" };
 const initialAppointment: AppointmentData = { specialist: "", date: undefined, timeSlot: "", mode: "in-person" };
 
 const Index = () => {
+  const { t } = useI18n();
+  const steps = [t("step1"), t("step2"), t("step3")];
+
   const [step, setStep] = useState(1);
   const [patient, setPatient] = useState<PatientData>(initialPatient);
   const [symptoms, setSymptoms] = useState<SymptomsData>(initialSymptoms);
@@ -25,12 +28,12 @@ const Index = () => {
 
   const validatePatient = useCallback(() => {
     const e: typeof errors = {};
-    if (!patient.fullName.trim()) e.fullName = "Full name is required";
-    if (!patient.age.trim() || isNaN(Number(patient.age)) || Number(patient.age) < 1 || Number(patient.age) > 150) e.age = "Please enter a valid age";
-    if (!patient.contact.trim()) e.contact = "Phone or email is required";
+    if (!patient.fullName.trim()) e.fullName = t("fullNameRequired");
+    if (!patient.age.trim() || isNaN(Number(patient.age)) || Number(patient.age) < 1 || Number(patient.age) > 150) e.age = t("validAge");
+    if (!patient.contact.trim()) e.contact = t("contactRequired");
     setErrors(e);
     return Object.keys(e).length === 0;
-  }, [patient]);
+  }, [patient, t]);
 
   const handlePatientChange = (field: keyof PatientData, value: string) => {
     setPatient((p) => ({ ...p, [field]: value }));
@@ -65,22 +68,23 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
-            <Heart className="w-5 h-5 text-primary-foreground" />
+        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
+              <Heart className="w-5 h-5 text-primary-foreground" />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-foreground">{t("appName")}</h1>
+              <p className="text-xs text-muted-foreground">{t("appSubtitle")}</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-lg font-bold text-foreground">MediCare</h1>
-            <p className="text-xs text-muted-foreground">Patient Query & Appointments</p>
-          </div>
+          <LanguageToggle />
         </div>
       </header>
 
-      {/* Main */}
       <main className="max-w-5xl mx-auto px-4 py-8">
-        {!isSubmitted && <ProgressBar currentStep={step} steps={STEPS} />}
+        {!isSubmitted && <ProgressBar currentStep={step} steps={steps} />}
 
         {isSubmitted ? (
           <AppointmentSummary
@@ -115,11 +119,8 @@ const Index = () => {
         )}
       </main>
 
-      {/* Footer */}
       <footer className="border-t border-border py-6 mt-12">
-        <p className="text-center text-xs text-muted-foreground">
-          © 2026 MediCare — Your data is encrypted and secured with AES-256 encryption
-        </p>
+        <p className="text-center text-xs text-muted-foreground">{t("footerText")}</p>
       </footer>
     </div>
   );
