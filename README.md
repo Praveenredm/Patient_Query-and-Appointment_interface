@@ -1,48 +1,96 @@
-# MyHealth Hub - Patient Query & Appointment Interface
+🏆 AI-Powered Patient Query & Smart Appointment Interface
+Intelligent Digital Triage & Secure Healthcare Booking System
+🚨 Problem Statement
 
-A clean, responsive web application designed for patients to manage their medical queries and book appointments efficiently.
+Traditional healthcare booking systems are reactive and unstructured.
 
-## Features
+Patients describe symptoms vaguely
 
-- **Symptom Input & AI Analysis**: AI-driven analysis of patient symptoms with emergency alerts.
-- **Appointment Booking**: Quick and easy scheduling with healthcare providers.
-- **Modern UI**: Minimalist design following premium aesthetics.
+Incorrect specialist bookings are common
 
-## Technology Stack
+Emergency symptoms go unnoticed
 
-This project is built with:
+No triage intelligence at entry point
 
-- **React**: Frontend library.
-- **Vite**: Build tool and development server.
-- **TypeScript**: Static typing for JavaScript.
-- **Tailwind CSS**: Utility-first CSS framework.
-- **shadcn/ui**: Reusable components.
+There is a clear need for a structured, intelligent, and secure patient-facing interface.
 
-## Getting Started
+💡 Our Solution
 
-### Prerequisites
+We developed a Smart Digital Triage & Appointment Intelligence Platform that:
 
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- npm or bun
+Collects structured symptom inputs
 
-### Installation
+Performs AI-based risk scoring
 
-1. Clone the repository:
-   ```sh
-   git clone <YOUR_GIT_URL>
-   ```
+Detects emergency conditions in real-time
 
-2. Install dependencies:
-   ```sh
-   npm install
-   ```
+Recommends the correct specialist automatically
 
-3. Start the development server:
-   ```sh
-   npm run dev
-   ```
+Secures patient data through encryption
 
-## Workflow
+This transforms appointment booking into a proactive healthcare gateway.
 
-- Use `npm run dev` to start the local development server.
-- Built-in components from `shadcn/ui` are located in `src/components/ui`.
+✨ Key Features
+📝 Structured Patient Input
+
+Multi-step form interface
+
+Symptom multi-select chips
+
+Severity scale (1–5)
+
+Duration tracking
+
+Real-time validation
+
+🧠 AI Symptom Intelligence Engine
+
+Risk scoring (Low / Medium / High)
+
+Condition category mapping
+
+Specialist auto-recommendation
+
+Live urgency feedback
+
+🚨 Emergency Escalation Logic
+
+Detects critical symptom combinations
+
+Displays emergency alert banner
+
+Suggests nearest hospital
+
+Disables booking for high-risk cases
+
+📅 Smart Appointment Booking
+
+Auto-suggested specialization
+
+Date & time slot selection
+
+Teleconsultation option
+
+Encrypted appointment reference ID
+
+🔐 Security Layer
+
+AES-based data encryption
+
+JWT authentication
+
+Tokenized confirmation links
+
+Input sanitization & backend validation
+
+♿ Accessibility
+
+Dark mode toggle
+
+Large text mode
+
+Voice-to-text symptom entry
+
+Mobile-responsive UI
+
+🏗️ Project Structure
