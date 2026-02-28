@@ -74,43 +74,41 @@ This transforms appointment booking into a proactive healthcare gateway.
 ## 🏗️ Project Structure
 
 patient-query-appointment-interface/
-│
-├── frontend/                         # React + Tailwind Frontend
+├── frontend/                    # React + Tailwind frontend
 │   ├── public/
 │   │   └── index.html
 │   │
 │   ├── src/
-│   │   ├── assets/                   # Images, icons
+│   │   ├── assets/             # images, icons, etc.
 │   │   │
-│   │   ├── components/               # Reusable UI Components
+│   │   ├── components/         # reusable UI pieces
 │   │   │   ├── Stepper.jsx
 │   │   │   ├── SymptomSelector.jsx
 │   │   │   ├── RiskMeter.jsx
 │   │   │   ├── EmergencyAlert.jsx
 │   │   │   └── AppointmentCard.jsx
 │   │   │
-│   │   ├── pages/                    # Application Pages
+│   │   ├── pages/              # route-level pages
 │   │   │   ├── Home.jsx
 │   │   │   ├── PatientForm.jsx
 │   │   │   ├── Booking.jsx
 │   │   │   └── Confirmation.jsx
 │   │   │
-│   │   ├── services/                 # API & Utility Services
+│   │   ├── services/           # API calls & utilities
 │   │   │   ├── api.js
 │   │   │   ├── encryption.js
 │   │   │   └── riskService.js
 │   │   │
-│   │   ├── context/                  # Global State Management
+│   │   ├── context/
 │   │   │   └── PatientContext.jsx
 │   │   │
-│   │   ├── utils/                    # Helper Functions
+│   │   ├── utils/
 │   │   │   └── validators.js
 │   │   │
 │   │   ├── App.jsx
 │   │   └── main.jsx
 │   │
 │   └── package.json
-
 
 ---
 
