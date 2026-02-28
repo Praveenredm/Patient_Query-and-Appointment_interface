@@ -75,49 +75,41 @@ This transforms appointment booking into a proactive healthcare gateway.
 
 patient-query-appointment-interface/
 │
-├── frontend/
+├── frontend/                         # React + Tailwind Frontend
 │   ├── public/
+│   │   └── index.html
+│   │
 │   ├── src/
-│   │   ├── components/
+│   │   ├── assets/                   # Images, icons
+│   │   │
+│   │   ├── components/               # Reusable UI Components
 │   │   │   ├── Stepper.jsx
 │   │   │   ├── SymptomSelector.jsx
 │   │   │   ├── RiskMeter.jsx
 │   │   │   ├── EmergencyAlert.jsx
-│   │   │   └── AppointmentForm.jsx
+│   │   │   └── AppointmentCard.jsx
 │   │   │
-│   │   ├── pages/
+│   │   ├── pages/                    # Application Pages
 │   │   │   ├── Home.jsx
+│   │   │   ├── PatientForm.jsx
 │   │   │   ├── Booking.jsx
 │   │   │   └── Confirmation.jsx
 │   │   │
-│   │   ├── services/
+│   │   ├── services/                 # API & Utility Services
 │   │   │   ├── api.js
-│   │   │   └── encryption.js
+│   │   │   ├── encryption.js
+│   │   │   └── riskService.js
 │   │   │
-│   │   └── App.jsx
+│   │   ├── context/                  # Global State Management
+│   │   │   └── PatientContext.jsx
+│   │   │
+│   │   ├── utils/                    # Helper Functions
+│   │   │   └── validators.js
+│   │   │
+│   │   ├── App.jsx
+│   │   └── main.jsx
 │   │
 │   └── package.json
-│
-├── backend/
-│   ├── main.py
-│   ├── routes/
-│   │   ├── triage.py
-│   │   ├── appointment.py
-│   │   └── auth.py
-│   │
-│   ├── models/
-│   │   ├── patient.py
-│   │   └── appointment.py
-│   │
-│   ├── services/
-│   │   ├── risk_engine.py
-│   │   ├── emergency_logic.py
-│   │   └── encryption_service.py
-│   │
-│   └── database.py
-│
-├── README.md
-└── requirements.txt
 
 
 ---
