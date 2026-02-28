@@ -73,6 +73,7 @@ This transforms appointment booking into a proactive healthcare gateway.
 
 ## 🏗️ Project Structure
 
+```text
 patient-query-appointment-interface/
 ├── frontend/                    # React + Tailwind frontend
 │   ├── public/
@@ -109,7 +110,7 @@ patient-query-appointment-interface/
 │   │   └── main.jsx
 │   │
 │   └── package.json
-
+```
 ---
 
 ## 🔄 System Flow
