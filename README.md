@@ -1,96 +1,175 @@
-🏆 AI-Powered Patient Query & Smart Appointment Interface
-Intelligent Digital Triage & Secure Healthcare Booking System
-🚨 Problem Statement
+# 🏆 AI-Powered Patient Query & Smart Appointment Interface
+### Intelligent Digital Triage & Secure Healthcare Booking System
+
+---
+
+## 🚨 Problem Statement
 
 Traditional healthcare booking systems are reactive and unstructured.
 
-Patients describe symptoms vaguely
+- Patients describe symptoms vaguely  
+- Incorrect specialist bookings are common  
+- Emergency symptoms go unnoticed  
+- No triage intelligence at the entry point  
 
-Incorrect specialist bookings are common
+There is a need for a structured, intelligent, and secure patient-facing healthcare interface.
 
-Emergency symptoms go unnoticed
+---
 
-No triage intelligence at entry point
+## 💡 Our Solution
 
-There is a clear need for a structured, intelligent, and secure patient-facing interface.
+We developed a **Smart Digital Triage & Appointment Intelligence Platform** that:
 
-💡 Our Solution
-
-We developed a Smart Digital Triage & Appointment Intelligence Platform that:
-
-Collects structured symptom inputs
-
-Performs AI-based risk scoring
-
-Detects emergency conditions in real-time
-
-Recommends the correct specialist automatically
-
-Secures patient data through encryption
+- Collects structured symptom inputs  
+- Performs AI-based risk scoring  
+- Detects emergency conditions in real-time  
+- Recommends the correct specialist automatically  
+- Secures patient data using encryption  
 
 This transforms appointment booking into a proactive healthcare gateway.
 
-✨ Key Features
-📝 Structured Patient Input
+---
 
-Multi-step form interface
+## ✨ Key Features
 
-Symptom multi-select chips
+### 📝 Structured Patient Input
+- Multi-step form interface  
+- Symptom multi-select chips  
+- Severity scale (1–5)  
+- Duration tracking  
+- Real-time validation  
 
-Severity scale (1–5)
+### 🧠 AI Symptom Intelligence Engine
+- Risk scoring (Low / Medium / High)  
+- Condition category mapping  
+- Specialist auto-recommendation  
+- Live urgency feedback  
 
-Duration tracking
+### 🚨 Emergency Escalation Logic
+- Detects critical symptom combinations  
+- Displays emergency alert banner  
+- Suggests nearest hospital  
+- Disables booking for high-risk cases  
 
-Real-time validation
+### 📅 Smart Appointment Booking
+- Auto-suggested specialization  
+- Date & time slot selection  
+- Teleconsultation option  
+- Encrypted appointment reference ID  
 
-🧠 AI Symptom Intelligence Engine
+### 🔐 Security Layer
+- AES-based data encryption  
+- JWT authentication  
+- Tokenized confirmation links  
+- Backend validation & sanitization  
 
-Risk scoring (Low / Medium / High)
+### ♿ Accessibility
+- Dark mode toggle  
+- Large text mode  
+- Voice-to-text symptom entry  
+- Mobile-responsive UI  
 
-Condition category mapping
+---
 
-Specialist auto-recommendation
+## 🏗️ Project Structure
 
-Live urgency feedback
+patient-query-appointment-interface/
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Stepper.jsx
+│   │   │   ├── SymptomSelector.jsx
+│   │   │   ├── RiskMeter.jsx
+│   │   │   ├── EmergencyAlert.jsx
+│   │   │   └── AppointmentForm.jsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   ├── Booking.jsx
+│   │   │   └── Confirmation.jsx
+│   │   │
+│   │   ├── services/
+│   │   │   ├── api.js
+│   │   │   └── encryption.js
+│   │   │
+│   │   └── App.jsx
+│   │
+│   └── package.json
+│
+├── backend/
+│   ├── main.py
+│   ├── routes/
+│   │   ├── triage.py
+│   │   ├── appointment.py
+│   │   └── auth.py
+│   │
+│   ├── models/
+│   │   ├── patient.py
+│   │   └── appointment.py
+│   │
+│   ├── services/
+│   │   ├── risk_engine.py
+│   │   ├── emergency_logic.py
+│   │   └── encryption_service.py
+│   │
+│   └── database.py
+│
+├── README.md
+└── requirements.txt
 
-🚨 Emergency Escalation Logic
 
-Detects critical symptom combinations
+---
 
-Displays emergency alert banner
+## 🔄 System Flow
 
-Suggests nearest hospital
+1️⃣ **Patient Input Phase**
+- User enters personal details  
+- Selects symptoms, severity, and duration  
 
-Disables booking for high-risk cases
+⬇  
 
-📅 Smart Appointment Booking
+2️⃣ **AI Triage Engine**
+- Maps symptoms to condition clusters  
+- Calculates risk score  
+- Categorizes urgency level  
 
-Auto-suggested specialization
+⬇  
 
-Date & time slot selection
+3️⃣ **Emergency Detection**
+- If high-risk pattern detected → Show emergency alert  
+- Suggest nearest hospital  
+- Disable booking  
 
-Teleconsultation option
+⬇  
 
-Encrypted appointment reference ID
+4️⃣ **Specialist Recommendation**
+- Auto-suggest department  
+- Display available time slots  
 
-🔐 Security Layer
+⬇  
 
-AES-based data encryption
+5️⃣ **Secure Appointment Confirmation**
+- Encrypt data  
+- Generate reference ID  
+- Send secure confirmation  
 
-JWT authentication
+---
 
-Tokenized confirmation links
+## 🏛️ System Architecture
 
-Input sanitization & backend validation
+Frontend (React + Tailwind CSS)  
+⬇  
+FastAPI Backend  
+⬇  
+AI Triage & Emergency Logic  
+⬇  
+MongoDB Database  
+⬇  
+Security Layer (AES Encryption + JWT Authentication)  
 
-♿ Accessibility
+Designed with modular and scalable architecture.
 
-Dark mode toggle
+---
 
-Large text mode
-
-Voice-to-text symptom entry
-
-Mobile-responsive UI
-
-🏗️ Project Structure
